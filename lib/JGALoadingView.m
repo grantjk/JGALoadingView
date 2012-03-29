@@ -1,15 +1,15 @@
 //
-//  LoadingView.m
+//  JGALoadingView.m
 //  WordsToWellness
 //
 //  Created by John Grant on 12-02-15.
 //  Copyright (c) 2012 Mobywan Corporation. All rights reserved.
 //
 
-#import "LoadingView.h"
+#import "JGALoadingView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface LoadingView()
+@interface JGALoadingView()
 @property(nonatomic, strong) UIActivityIndicatorView *activityView;
 @property(nonatomic, strong) UILabel *activityLabel;
 @property(nonatomic, strong) UIView *parentView;
@@ -17,7 +17,7 @@
 @property(nonatomic, strong) UIImageView *spinView;
 @end
 
-@implementation LoadingView
+@implementation JGALoadingView
 
 @synthesize activityView = _activityView;
 @synthesize activityLabel = _activityLabel;
@@ -78,7 +78,7 @@ static NSString *animationScaleOutKey = @"scaleOut";
 
 
 // Returns the current loading view if there is one
-+(LoadingView *)currentLoadingViewForController:(UIViewController *)vc{    
++(JGALoadingView *)currentLoadingViewForController:(UIViewController *)vc{    
     if ([vc respondsToSelector:@selector(loadingView)]) {
         return [vc performSelector:@selector(loadingView)];
     }
@@ -86,9 +86,9 @@ static NSString *animationScaleOutKey = @"scaleOut";
 }
 
 // Create a new loading view with given text, add to view and set propery on controller
-+(LoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text viewController: (UIViewController *)vc{
++(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text viewController: (UIViewController *)vc{
     CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
-    LoadingView *lv = [[LoadingView alloc] initWithFrame:frame];
+    JGALoadingView *lv = [[JGALoadingView alloc] initWithFrame:frame];
     lv.center = view.center;
     lv.activityLabel.text = text;
     lv.parentView = view;
@@ -103,12 +103,12 @@ static NSString *animationScaleOutKey = @"scaleOut";
 
 // Check if loading view exists inside view controller class
 // If so, just return the same object - this way we don't end up with multiple views on top of each other
-+(LoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc{    
-    LoadingView * existingLv = [LoadingView currentLoadingViewForController:vc];
++(JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc{    
+    JGALoadingView * existingLv = [JGALoadingView currentLoadingViewForController:vc];
     if (existingLv) {
         return existingLv;
     }
-    return [LoadingView newLoadingViewForView:view withText:text viewController:vc];
+    return [JGALoadingView newLoadingViewForView:view withText:text viewController:vc];
 }
 
 // Animation
