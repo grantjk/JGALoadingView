@@ -187,7 +187,8 @@ static NSString *animationScaleOutKey = @"scaleOut";
 
 #pragma mark -
 #pragma mark CAAnimation Delegate
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag{
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
     if (theAnimation == [self.layer animationForKey:animationScaleUpKey] ) {
         [self scaleNorm];
     }
@@ -195,12 +196,10 @@ static NSString *animationScaleOutKey = @"scaleOut";
         self.layer.transform = CATransform3DMakeScale(1, 1, 1);
     }
     else if (theAnimation == [self.layer animationForKey:animationScaleOutKey] ) {
-        //[self.activityView stopAnimating];
         [self stopSpinner];
         [self removeFromSuperview];
         [self.layer removeAllAnimations];
         
-        // Remove visible property
         self.visible = NO;
     }
 }
