@@ -11,7 +11,7 @@
 @interface JGALoadingView : UIView
 
 
-+(LoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc;
++(JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc;
 -(void)show;
 -(void)hide;
 @end
