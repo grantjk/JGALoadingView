@@ -60,18 +60,14 @@ static NSString *animationScaleOutKey = @"scaleOut";
         self.activityLabel.textColor = [UIColor whiteColor];
         self.activityLabel.font = [UIFont boldSystemFontOfSize:16];
         self.activityLabel.textAlignment = UITextAlignmentCenter;
-        
+
         // Create the spinner
-        self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        self.activityView.center = CGPointMake(self.center.x, self.center.y + 10);
-        
         self.spinView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmoothSpinner"]];
         _spinView.center = CGPointMake(self.center.x, self.center.y + 10);
-        [self addSubview:_spinView];
         
         // Add the subviews
         [self addSubview: self.activityLabel];
-        // [self addSubview: self.activityView];
+        [self addSubview:_spinView];
     }
     return self;
 }
@@ -166,26 +162,21 @@ static NSString *animationScaleOutKey = @"scaleOut";
     [_spinView.layer removeAllAnimations];
 }
 
--(void)show{
-    // only show if not already visible
+-(void)show
+{
     if (!_visible) {
-        // Set visible property to true
         self.visible = YES;
-        
-        // Set initital paramaters
         [self.parentView addSubview:self];
-        [self.activityView startAnimating];
+        
         [self startSpinner];
-        //[self scaleLayerTo:SCALE_UP_VALUE duration:SCALE_UP_DURATION withKey:animationScaleUpKey];
-
-        // Start scale at 1.5 for animation purposes
+        
         self.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
-
         [self scaleNorm];
     }
 }
 
--(void)hide{
+-(void)hide
+{
     // Animate in : Scale down and fade in
     NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithInt:1], @"fromValue",
