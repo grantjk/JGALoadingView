@@ -3,7 +3,7 @@
 //  WordsToWellness
 //
 //  Created by John Grant on 12-02-15.
-//  Copyright (c) 2012 Mobywan Corporation. All rights reserved.
+//  Copyright (c) JGApps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
