@@ -10,8 +10,17 @@
 
 @interface JGALoadingView : UIView
 
+// Create a new view with loading text
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text;
 
-+(JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc;
--(void)show;
--(void)hide;
+// Remove loading view if no key provided
++ (void)hideLoadingView;
+
+// Create a new view with loading text and optional observer key
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key;
+
+// Remove loading view based on key
++ (void)hideLoadingViewForKey:(NSString *)key;
+
+
 @end

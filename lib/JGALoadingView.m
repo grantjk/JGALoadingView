@@ -15,6 +15,9 @@
 @property(nonatomic, strong) UIView *parentView;
 @property(nonatomic, assign) BOOL visible;
 @property(nonatomic, strong) UIImageView *spinView;
+
+-(void)show;
+
 @end
 
 @implementation JGALoadingView
@@ -45,6 +48,8 @@ static NSString *animationScaleUpKey = @"scaleUp";
 static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
 
+static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -72,42 +77,89 @@ static NSString *animationScaleOutKey = @"scaleOut";
     return self;
 }
 
+-(void)show
+{
+    [self.parentView addSubview:self];
+    [self startSpinner];
+    self.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
+    [self scaleNorm];
+}
 
-// Returns the current loading view if there is one
-+(JGALoadingView *)currentLoadingViewForController:(UIViewController *)vc{    
-    if ([vc respondsToSelector:@selector(loadingView)]) {
-        return [vc performSelector:@selector(loadingView)];
+-(void)hide:(NSNotification *)notification
+{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    // Animate in : Scale down and fade in
+    NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:1], @"fromValue",
+                              [NSNumber numberWithInt:0], @"toValue",
+                              nil];
+    
+    [self scaleLayerTo:SCALE_OUT_VALUE 
+              duration:SCALE_OUT_DURATION 
+               withKey:animationScaleOutKey 
+              fadeOpts:fadeOpts];
+    
+}
+
+#pragma mark - Creation
+// Create a new view with loading text
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text
+{
+    return [JGALoadingView loadingViewInView:view withText:text forKey:_defaultKey];
+}
+
+// Remove loading view if no key provided
++ (void)hideLoadingView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:_defaultKey object:nil];
+}
+
++ (JGALoadingView *)existingLoadingViewInView:(UIView *)view
+{
+    for (UIView *v in view.subviews){
+        if ([v isKindOfClass:[JGALoadingView class]]) {
+            return (JGALoadingView *)v;
+        }
     }
     return nil;
 }
 
+
 // Create a new loading view with given text, add to view and set propery on controller
-+(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text viewController: (UIViewController *)vc{
-    CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
-    JGALoadingView *lv = [[JGALoadingView alloc] initWithFrame:frame];
-    lv.center = view.center;
-    lv.activityLabel.text = text;
-    lv.parentView = view;
-    
-    if ([vc respondsToSelector:@selector(setLoadingView:)]){
-        [vc performSelector:@selector(setLoadingView:) withObject:lv];
++(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
+{
+    JGALoadingView *loadingView = [JGALoadingView existingLoadingViewInView:view];
+    if (!loadingView) {
+        CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
+        loadingView = [[JGALoadingView alloc] initWithFrame:frame];
+        loadingView.center = view.center;
+        loadingView.activityLabel.text = text;
+        loadingView.parentView = view;
+        [loadingView show];
+        
+        // Subscribe to remove notification
+        [[NSNotificationCenter defaultCenter] addObserver:loadingView selector:@selector(hide:) name:key object:nil];
     }
-    
-    return lv;
+
+    return loadingView;
 }
 
 
 // Check if loading view exists inside view controller class
 // If so, just return the same object - this way we don't end up with multiple views on top of each other
-+(JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text viewController:(UIViewController *)vc{    
-    JGALoadingView * existingLv = [JGALoadingView currentLoadingViewForController:vc];
-    if (existingLv) {
-        return existingLv;
-    }
-    return [JGALoadingView newLoadingViewForView:view withText:text viewController:vc];
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
+{
+    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key];
 }
 
-// Animation
++ (void)hideLoadingViewForKey:(NSString *)key
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:key object:nil];
+}
+
+
+#pragma mark - Animation
 -(void)scaleLayerTo:(float)scaleValue duration:(float)duration withKey:(NSString *)key fadeOpts:(NSDictionary *)fadeOpts{
     // Bounce In
     CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -162,31 +214,8 @@ static NSString *animationScaleOutKey = @"scaleOut";
     [_spinView.layer removeAllAnimations];
 }
 
--(void)show
-{
-    if (!_visible) {
-        self.visible = YES;
-        [self.parentView addSubview:self];
-        
-        [self startSpinner];
-        
-        self.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
-        [self scaleNorm];
-    }
-}
 
--(void)hide
-{
-    // Animate in : Scale down and fade in
-    NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:1], @"fromValue",
-                              [NSNumber numberWithInt:0], @"toValue",
-                              nil];
-    [self scaleLayerTo:SCALE_OUT_VALUE duration:SCALE_OUT_DURATION withKey:animationScaleOutKey fadeOpts:fadeOpts];
-}
-
-#pragma mark -
-#pragma mark CAAnimation Delegate
+#pragma mark - CAAnimation Delegate
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
     if (theAnimation == [self.layer animationForKey:animationScaleUpKey] ) {
