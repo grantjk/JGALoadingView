@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B3A3DA6152D21A700178840 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA5152D21A700178840 /* UIKit.framework */; };
+		7B3A3DA8152D21A700178840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA7152D21A700178840 /* Foundation.framework */; };
+		7B3A3DAA152D21A700178840 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA9152D21A700178840 /* CoreGraphics.framework */; };
+		7B3A3DC7152D21A700178840 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DC6152D21A700178840 /* SenTestingKit.framework */; };
+		7B3A3DC8152D21A800178840 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA5152D21A700178840 /* UIKit.framework */; };
+		7B3A3DC9152D21A800178840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA7152D21A700178840 /* Foundation.framework */; };
+		7B3A3DD1152D21A800178840 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DCF152D21A800178840 /* InfoPlist.strings */; };
+		7B3A3DD4152D21A800178840 /* JGALoadingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DD3152D21A800178840 /* JGALoadingViewTests.m */; };
+		7B3A3E00152D22EE00178840 /* SmoothSpinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DED152D22EE00178840 /* SmoothSpinner.png */; };
+		7B3A3E01152D22EE00178840 /* SmoothSpinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */; };
+		7B3A3E02152D22EE00178840 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF1152D22EE00178840 /* AppDelegate.m */; };
+		7B3A3E03152D22EE00178840 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF2152D22EE00178840 /* InfoPlist.strings */; };
+		7B3A3E04152D22EE00178840 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF4152D22EE00178840 /* ViewController_iPad.xib */; };
+		7B3A3E05152D22EE00178840 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF6152D22EE00178840 /* ViewController_iPhone.xib */; };
+		7B3A3E06152D22EE00178840 /* JGALoadingView-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF8152D22EE00178840 /* JGALoadingView-Info.plist */; };
+		7B3A3E07152D22EE00178840 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFA152D22EE00178840 /* main.m */; };
+		7B3A3E08152D22EE00178840 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFC152D22EE00178840 /* ViewController.m */; };
+		7B3A3E09152D22EE00178840 /* JGALoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFF152D22EE00178840 /* JGALoadingView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B3A3DCA152D21A800178840 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B3A3D98152D21A700178840 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B3A3DA0152D21A700178840;
+			remoteInfo = JGALoadingView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7B3A3DA1152D21A700178840 /* JGALoadingView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGALoadingView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B3A3DA5152D21A700178840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7B3A3DA7152D21A700178840 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7B3A3DA9152D21A700178840 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7B3A3DC5152D21A700178840 /* JGALoadingViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JGALoadingViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B3A3DC6152D21A700178840 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		7B3A3DCE152D21A800178840 /* JGALoadingViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JGALoadingViewTests-Info.plist"; sourceTree = "<group>"; };
+		7B3A3DD0152D21A800178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B3A3DD2152D21A800178840 /* JGALoadingViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGALoadingViewTests.h; sourceTree = "<group>"; };
+		7B3A3DD3152D21A800178840 /* JGALoadingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGALoadingViewTests.m; sourceTree = "<group>"; };
+		7B3A3DED152D22EE00178840 /* SmoothSpinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmoothSpinner.png; sourceTree = "<group>"; };
+		7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SmoothSpinner@2x.png"; sourceTree = "<group>"; };
+		7B3A3DF0152D22EE00178840 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7B3A3DF1152D22EE00178840 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7B3A3DF3152D22EE00178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B3A3DF5152D22EE00178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		7B3A3DF7152D22EE00178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		7B3A3DF8152D22EE00178840 /* JGALoadingView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JGALoadingView-Info.plist"; sourceTree = "<group>"; };
+		7B3A3DF9152D22EE00178840 /* JGALoadingView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGALoadingView-Prefix.pch"; sourceTree = "<group>"; };
+		7B3A3DFA152D22EE00178840 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B3A3DFB152D22EE00178840 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7B3A3DFC152D22EE00178840 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7B3A3DFE152D22EE00178840 /* JGALoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGALoadingView.h; sourceTree = "<group>"; };
+		7B3A3DFF152D22EE00178840 /* JGALoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGALoadingView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B3A3D9E152D21A700178840 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3DA6152D21A700178840 /* UIKit.framework in Frameworks */,
+				7B3A3DA8152D21A700178840 /* Foundation.framework in Frameworks */,
+				7B3A3DAA152D21A700178840 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B3A3DC1152D21A700178840 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3DC7152D21A700178840 /* SenTestingKit.framework in Frameworks */,
+				7B3A3DC8152D21A800178840 /* UIKit.framework in Frameworks */,
+				7B3A3DC9152D21A800178840 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B3A3D96152D21A700178840 = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DEC152D22EE00178840 /* img */,
+				7B3A3DEF152D22EE00178840 /* sample */,
+				7B3A3DFD152D22EE00178840 /* src */,
+				7B3A3DCC152D21A800178840 /* JGALoadingViewTests */,
+				7B3A3DA4152D21A700178840 /* Frameworks */,
+				7B3A3DA2152D21A700178840 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7B3A3DA2152D21A700178840 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DA1152D21A700178840 /* JGALoadingView.app */,
+				7B3A3DC5152D21A700178840 /* JGALoadingViewTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B3A3DA4152D21A700178840 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DA5152D21A700178840 /* UIKit.framework */,
+				7B3A3DA7152D21A700178840 /* Foundation.framework */,
+				7B3A3DA9152D21A700178840 /* CoreGraphics.framework */,
+				7B3A3DC6152D21A700178840 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B3A3DCC152D21A800178840 /* JGALoadingViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DD2152D21A800178840 /* JGALoadingViewTests.h */,
+				7B3A3DD3152D21A800178840 /* JGALoadingViewTests.m */,
+				7B3A3DCD152D21A800178840 /* Supporting Files */,
+			);
+			path = JGALoadingViewTests;
+			sourceTree = "<group>";
+		};
+		7B3A3DCD152D21A800178840 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DCE152D21A800178840 /* JGALoadingViewTests-Info.plist */,
+				7B3A3DCF152D21A800178840 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7B3A3DEC152D22EE00178840 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DED152D22EE00178840 /* SmoothSpinner.png */,
+				7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		7B3A3DEF152D22EE00178840 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DF0152D22EE00178840 /* AppDelegate.h */,
+				7B3A3DF1152D22EE00178840 /* AppDelegate.m */,
+				7B3A3DF2152D22EE00178840 /* InfoPlist.strings */,
+				7B3A3DF4152D22EE00178840 /* ViewController_iPad.xib */,
+				7B3A3DF6152D22EE00178840 /* ViewController_iPhone.xib */,
+				7B3A3DF8152D22EE00178840 /* JGALoadingView-Info.plist */,
+				7B3A3DF9152D22EE00178840 /* JGALoadingView-Prefix.pch */,
+				7B3A3DFA152D22EE00178840 /* main.m */,
+				7B3A3DFB152D22EE00178840 /* ViewController.h */,
+				7B3A3DFC152D22EE00178840 /* ViewController.m */,
+			);
+			path = sample;
+			sourceTree = "<group>";
+		};
+		7B3A3DFD152D22EE00178840 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7B3A3DFE152D22EE00178840 /* JGALoadingView.h */,
+				7B3A3DFF152D22EE00178840 /* JGALoadingView.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B3A3DA0152D21A700178840 /* JGALoadingView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B3A3DD7152D21A800178840 /* Build configuration list for PBXNativeTarget "JGALoadingView" */;
+			buildPhases = (
+				7B3A3D9D152D21A700178840 /* Sources */,
+				7B3A3D9E152D21A700178840 /* Frameworks */,
+				7B3A3D9F152D21A700178840 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JGALoadingView;
+			productName = JGALoadingView;
+			productReference = 7B3A3DA1152D21A700178840 /* JGALoadingView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7B3A3DC4152D21A700178840 /* JGALoadingViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B3A3DDA152D21A800178840 /* Build configuration list for PBXNativeTarget "JGALoadingViewTests" */;
+			buildPhases = (
+				7B3A3DC0152D21A700178840 /* Sources */,
+				7B3A3DC1152D21A700178840 /* Frameworks */,
+				7B3A3DC2152D21A700178840 /* Resources */,
+				7B3A3DC3152D21A700178840 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B3A3DCB152D21A800178840 /* PBXTargetDependency */,
+			);
+			name = JGALoadingViewTests;
+			productName = JGALoadingViewTests;
+			productReference = 7B3A3DC5152D21A700178840 /* JGALoadingViewTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B3A3D98152D21A700178840 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Healthcare Made Simple";
+			};
+			buildConfigurationList = 7B3A3D9B152D21A700178840 /* Build configuration list for PBXProject "JGALoadingView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7B3A3D96152D21A700178840;
+			productRefGroup = 7B3A3DA2152D21A700178840 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B3A3DA0152D21A700178840 /* JGALoadingView */,
+				7B3A3DC4152D21A700178840 /* JGALoadingViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B3A3D9F152D21A700178840 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3E00152D22EE00178840 /* SmoothSpinner.png in Resources */,
+				7B3A3E01152D22EE00178840 /* SmoothSpinner@2x.png in Resources */,
+				7B3A3E03152D22EE00178840 /* InfoPlist.strings in Resources */,
+				7B3A3E04152D22EE00178840 /* ViewController_iPad.xib in Resources */,
+				7B3A3E05152D22EE00178840 /* ViewController_iPhone.xib in Resources */,
+				7B3A3E06152D22EE00178840 /* JGALoadingView-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B3A3DC2152D21A700178840 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3DD1152D21A800178840 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B3A3DC3152D21A700178840 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B3A3D9D152D21A700178840 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3E02152D22EE00178840 /* AppDelegate.m in Sources */,
+				7B3A3E07152D22EE00178840 /* main.m in Sources */,
+				7B3A3E08152D22EE00178840 /* ViewController.m in Sources */,
+				7B3A3E09152D22EE00178840 /* JGALoadingView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B3A3DC0152D21A700178840 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3A3DD4152D21A800178840 /* JGALoadingViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7B3A3DCB152D21A800178840 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B3A3DA0152D21A700178840 /* JGALoadingView */;
+			targetProxy = 7B3A3DCA152D21A800178840 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7B3A3DCF152D21A800178840 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B3A3DD0152D21A800178840 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7B3A3DF2152D22EE00178840 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B3A3DF3152D22EE00178840 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7B3A3DF4152D22EE00178840 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B3A3DF5152D22EE00178840 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		7B3A3DF6152D22EE00178840 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B3A3DF7152D22EE00178840 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B3A3DD5152D21A800178840 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7B3A3DD6152D21A800178840 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B3A3DD8152D21A800178840 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGALoadingView/JGALoadingView-Prefix.pch";
+				INFOPLIST_FILE = "JGALoadingView/JGALoadingView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7B3A3DD9152D21A800178840 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGALoadingView/JGALoadingView-Prefix.pch";
+				INFOPLIST_FILE = "JGALoadingView/JGALoadingView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7B3A3DDB152D21A800178840 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JGALoadingView.app/JGALoadingView";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGALoadingView/JGALoadingView-Prefix.pch";
+				INFOPLIST_FILE = "JGALoadingViewTests/JGALoadingViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7B3A3DDC152D21A800178840 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JGALoadingView.app/JGALoadingView";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGALoadingView/JGALoadingView-Prefix.pch";
+				INFOPLIST_FILE = "JGALoadingViewTests/JGALoadingViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B3A3D9B152D21A700178840 /* Build configuration list for PBXProject "JGALoadingView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B3A3DD5152D21A800178840 /* Debug */,
+				7B3A3DD6152D21A800178840 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B3A3DD7152D21A800178840 /* Build configuration list for PBXNativeTarget "JGALoadingView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B3A3DD8152D21A800178840 /* Debug */,
+				7B3A3DD9152D21A800178840 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B3A3DDA152D21A800178840 /* Build configuration list for PBXNativeTarget "JGALoadingViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B3A3DDB152D21A800178840 /* Debug */,
+				7B3A3DDC152D21A800178840 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B3A3D98152D21A700178840 /* Project object */;
+}
