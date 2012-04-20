@@ -16,6 +16,12 @@
 // Remove loading view if no key provided
 + (void)hideLoadingView;
 
+// Hides the loading view with a success message after a given delay
++ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay;
+
+// Hides the loading view with an error message after a given delay
++ (void)hideLoadingViewWithError:(NSString *)message delay:(int)delay;
+
 // Create a new view with loading text and optional observer key
 + (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key;
 

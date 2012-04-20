@@ -44,6 +44,12 @@
 #define SCALE_OUT_DURATION 0.25
 #define SCALE_OUT_VALUE 0.01
 
+#define kOptsKeyMessage @"message"
+#define kOptsKeyDelay @"delay"
+
+#define kNotifSuccess @"successNotification"
+#define kNotifError @"errorNotification"
+
 static NSString *animationScaleUpKey = @"scaleUp";
 static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
@@ -83,6 +89,34 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     [self startSpinner];
     self.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
     [self scaleNorm];
+}
+
+- (void)showNotificationImage:(UIImage *)image opts:(NSDictionary *)opts
+{
+    UIImageView *notifView = [[UIImageView alloc] initWithImage:image];
+    notifView.center = _spinView.center;
+    
+    [_spinView removeFromSuperview];
+    [self addSubview:notifView];
+    _activityLabel.text = [opts objectForKey:kOptsKeyMessage];
+    
+    int delay = [[opts objectForKey:kOptsKeyDelay] intValue];
+    [NSTimer scheduledTimerWithTimeInterval:delay 
+                                     target:self 
+                                   selector:@selector(hide:) 
+                                   userInfo:nil repeats:0];
+}
+
+- (void)showSuccessNotification:(NSNotification *)notification
+{
+    UIImage *checkmark = [UIImage imageNamed:@"WhiteCheck"];
+    [self showNotificationImage:checkmark opts:notification.userInfo];
+}
+
+- (void)showFailNotification:(NSNotification *)notification
+{
+    UIImage *failImage = [UIImage imageNamed:@"WhiteX"];
+    [self showNotificationImage:failImage opts:notification.userInfo];
 }
 
 -(void)hide:(NSNotification *)notification
@@ -139,7 +173,20 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         [loadingView show];
         
         // Subscribe to remove notification
-        [[NSNotificationCenter defaultCenter] addObserver:loadingView selector:@selector(hide:) name:key object:nil];
+        [[NSNotificationCenter defaultCenter] 
+            addObserver:loadingView 
+                selector:@selector(hide:) 
+                    name:key object:nil];
+        
+        [[NSNotificationCenter defaultCenter] 
+             addObserver:loadingView 
+                selector:@selector(showSuccessNotification:) 
+                    name:kNotifSuccess object:nil];
+
+        [[NSNotificationCenter defaultCenter] 
+         addObserver:loadingView 
+         selector:@selector(showFailNotification:) 
+         name:kNotifError object:nil];
     }
 
     return loadingView;
@@ -156,6 +203,28 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 + (void)hideLoadingViewForKey:(NSString *)key
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:key object:nil];
+}
+
++ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay
+{
+    NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
+    [opts setObject:message forKey:kOptsKeyMessage];
+    [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSuccess 
+                                                        object:nil 
+                                                      userInfo:opts];
+}
+
++ (void)hideLoadingViewWithError:(NSString *)message delay:(int)delay
+{
+    NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
+    [opts setObject:message forKey:kOptsKeyMessage];
+    [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifError
+                                                        object:nil 
+                                                      userInfo:opts];
 }
 
 
