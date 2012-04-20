@@ -199,7 +199,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 {
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     rotation.toValue = [NSNumber numberWithFloat:M_PI];
-    rotation.duration = 0.45;
+    rotation.duration = 0.35;
     rotation.repeatCount = HUGE_VALF;
     rotation.cumulative = YES;
     rotation.removedOnCompletion = NO;
