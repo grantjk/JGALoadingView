@@ -76,6 +76,12 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         self.spinView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmoothSpinner"]];
         _spinView.center = CGPointMake(self.center.x, self.center.y + 10);
         
+        // Set autoresizing masks
+        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | 
+            UIViewAutoresizingFlexibleRightMargin | 
+            UIViewAutoresizingFlexibleTopMargin | 
+            UIViewAutoresizingFlexibleBottomMargin;
+        
         // Add the subviews
         [self addSubview: self.activityLabel];
         [self addSubview:_spinView];
@@ -85,10 +91,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 
 -(void)show
 {
-    [self.parentView addSubview:self];
-    [self startSpinner];
-    self.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
-    [self scaleNorm];
+    [self scaleUp];
 }
 
 - (void)showNotificationImage:(UIImage *)image opts:(NSDictionary *)opts
@@ -256,6 +259,13 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     }
 }
 
+- (void)scaleUp
+{
+    // Use animation to scale initial. Have to set duration to something small since
+    // using 0 creates a default duration of 0.25
+    [self scaleLayerTo:3 duration:0.001 withKey:animationScaleUpKey fadeOpts:nil];
+}
+
 -(void)scaleNorm{
     // Animate in : Scale down and fade in
     NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -288,6 +298,9 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
     if (theAnimation == [self.layer animationForKey:animationScaleUpKey] ) {
+        self.center = self.parentView.center;
+        [self.parentView addSubview:self];
+        [self startSpinner];
         [self scaleNorm];
     }
     else if (theAnimation == [self.layer animationForKey:animationScaleNormKey] ) {
