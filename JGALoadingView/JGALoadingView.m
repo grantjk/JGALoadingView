@@ -113,12 +113,14 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 - (void)showSuccessNotification:(NSNotification *)notification
 {
     UIImage *checkmark = [UIImage imageNamed:@"WhiteCheck"];
+    DLog(@"showing checkmark");
     [self showNotificationImage:checkmark opts:notification.userInfo];
 }
 
 - (void)showFailNotification:(NSNotification *)notification
 {
     UIImage *failImage = [UIImage imageNamed:@"WhiteX"];
+        DLog(@"showing error");
     [self showNotificationImage:failImage opts:notification.userInfo];
 }
 
