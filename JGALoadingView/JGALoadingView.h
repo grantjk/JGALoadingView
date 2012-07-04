@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^JGALoadingViewCompletionBlock)(void);
+
 @interface JGALoadingView : UIView
 
 // Create a new view with loading text
@@ -28,5 +30,7 @@
 // Remove loading view based on key
 + (void)hideLoadingViewForKey:(NSString *)key;
 
+// Removes the loading view with a success and takes a block to execute after success delay
++ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay completion:(void(^)(void))completion;
 
 @end

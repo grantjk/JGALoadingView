@@ -50,6 +50,8 @@
 #define kNotifSuccess @"successNotification"
 #define kNotifError @"errorNotification"
 
+#define kCompletionBlock @"completion_block"
+
 static NSString *animationScaleUpKey = @"scaleUp";
 static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
@@ -108,19 +110,29 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                      target:self 
                                    selector:@selector(hide:) 
                                    userInfo:nil repeats:0];
+    
+    if ([opts objectForKey:kCompletionBlock]) {
+        [NSTimer scheduledTimerWithTimeInterval:delay 
+                                         target:self 
+                                       selector:@selector(executeCompletionBlock:) 
+                                       userInfo:opts repeats:0];        
+    }
+}
+
+- (void)executeCompletionBlock:(NSTimer *)timer
+{
+    ((JGALoadingViewCompletionBlock)[[timer userInfo] objectForKey:kCompletionBlock])();
 }
 
 - (void)showSuccessNotification:(NSNotification *)notification
 {
     UIImage *checkmark = [UIImage imageNamed:@"WhiteCheck"];
-    DLog(@"showing checkmark");
     [self showNotificationImage:checkmark opts:notification.userInfo];
 }
 
 - (void)showFailNotification:(NSNotification *)notification
 {
     UIImage *failImage = [UIImage imageNamed:@"WhiteX"];
-        DLog(@"showing error");
     [self showNotificationImage:failImage opts:notification.userInfo];
 }
 
@@ -212,13 +224,20 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 
 + (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay
 {
+ 
+    [JGALoadingView hideLoadingViewWithSuccess:message delay:delay completion:nil];
+}
+
++ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay completion:(void(^)(void))completion
+{
     NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
     [opts setObject:message forKey:kOptsKeyMessage];
     [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
+    if (completion) [opts setObject:completion forKey:kCompletionBlock];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSuccess 
                                                         object:nil 
-                                                      userInfo:opts];
+                                                      userInfo:opts];   
 }
 
 + (void)hideLoadingViewWithError:(NSString *)message delay:(int)delay
@@ -231,7 +250,6 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                                         object:nil 
                                                       userInfo:opts];
 }
-
 
 #pragma mark - Animation
 -(void)scaleLayerTo:(float)scaleValue duration:(float)duration withKey:(NSString *)key fadeOpts:(NSDictionary *)fadeOpts{
