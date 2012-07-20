@@ -236,7 +236,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
     if (completion) {
         JGALoadingViewCompletionBlock block = (JGALoadingViewCompletionBlock)completion;
-        [opts setObject:block forKey:kCompletionBlock];
+        [opts setObject:[block copy] forKey:kCompletionBlock];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSuccess 
