@@ -121,7 +121,8 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 
 - (void)executeCompletionBlock:(NSTimer *)timer
 {
-    ((JGALoadingViewCompletionBlock)[[timer userInfo] objectForKey:kCompletionBlock])();
+    JGALoadingViewCompletionBlock block = [[timer userInfo] objectForKey:kCompletionBlock];
+    block();
 }
 
 - (void)showSuccessNotification:(NSNotification *)notification
@@ -233,7 +234,10 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
     [opts setObject:message forKey:kOptsKeyMessage];
     [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
-    if (completion) [opts setObject:completion forKey:kCompletionBlock];
+    if (completion) {
+        JGALoadingViewCompletionBlock block = (JGALoadingViewCompletionBlock)completion;
+        [opts setObject:block forKey:kCompletionBlock];
+    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSuccess 
                                                         object:nil 
