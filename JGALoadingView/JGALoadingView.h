@@ -12,6 +12,9 @@ typedef void(^JGALoadingViewCompletionBlock)(void);
 
 @interface JGALoadingView : UIView
 
+// Set a default font name for the loading view
++ (void)setDefaultFontName:(NSString *)fontName;
+
 // Create a new view with loading text
 + (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text;
 
@@ -26,6 +29,9 @@ typedef void(^JGALoadingViewCompletionBlock)(void);
 
 // Create a new view with loading text and optional observer key
 + (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key;
+
+// Font name optional
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key fontName:(NSString *)fontName;
 
 // Remove loading view based on key
 + (void)hideLoadingViewForKey:(NSString *)key;

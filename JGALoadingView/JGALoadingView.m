@@ -8,6 +8,7 @@
 
 #import "JGALoadingView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JGALoadingViewController.h"
 
 @interface JGALoadingView()
 @property(nonatomic, strong) UIActivityIndicatorView *activityView;
@@ -57,6 +58,11 @@ static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
 
 static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
+
++ (void)setDefaultFontName:(NSString *)fontName
+{
+    [JGALoadingViewController setDefaultFontName:fontName];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -162,6 +168,11 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     return [JGALoadingView loadingViewInView:view withText:text forKey:_defaultKey];
 }
 
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text fontName:(NSString *)fontName
+{
+    return [JGALoadingView loadingViewInView:view withText:text forKey:_defaultKey fontName:fontName];
+}
+
 // Remove loading view if no key provided
 + (void)hideLoadingView{
     [[NSNotificationCenter defaultCenter] postNotificationName:_defaultKey object:nil];
@@ -177,9 +188,12 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     return nil;
 }
 
-
-// Create a new loading view with given text, add to view and set propery on controller
 +(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
+{
+    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key fontName:nil];
+}
+// Create a new loading view with given text, add to view and set propery on controller
++(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key fontName:(NSString *)fontName
 {
     JGALoadingView *loadingView = [JGALoadingView existingLoadingViewInView:view];
     if (!loadingView) {
@@ -189,6 +203,16 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         loadingView.activityLabel.text = text;
         loadingView.parentView = view;
         [loadingView show];
+        
+        if (fontName) {
+            loadingView.activityLabel.font = [UIFont fontWithName:fontName size:loadingView.activityLabel.font.pointSize];
+        }else{
+            NSString *defaultCustomFontName = [JGALoadingViewController defaultFontName];
+            if (defaultCustomFontName){
+                loadingView.activityLabel.font = [UIFont fontWithName:defaultCustomFontName
+                                                                 size:loadingView.activityLabel.font.pointSize];
+            }
+        }
         
         // Subscribe to remove notification
         [[NSNotificationCenter defaultCenter] 
@@ -210,6 +234,10 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     return loadingView;
 }
 
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key fontName:(NSString *)fontName
+{
+    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key fontName:fontName];
+}
 
 // Check if loading view exists inside view controller class
 // If so, just return the same object - this way we don't end up with multiple views on top of each other
