@@ -47,6 +47,7 @@
 
 #define kOptsKeyMessage @"message"
 #define kOptsKeyDelay @"delay"
+#define kOptsKeyType @"type"
 
 #define kNotifSuccess @"successNotification"
 #define kNotifError @"errorNotification"
@@ -58,6 +59,8 @@ static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
 
 static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
+
+#define DEFAULT_TAG 874567316874235765
 
 + (void)setDefaultFontName:(NSString *)fontName
 {
@@ -93,6 +96,9 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         // Add the subviews
         [self addSubview: self.activityLabel];
         [self addSubview:_spinView];
+        
+        // Set up a tag so we can check against later
+        self.tag = DEFAULT_TAG;
     }
     return self;
 }
@@ -102,66 +108,17 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     [self scaleUp];
 }
 
-- (void)showNotificationImage:(UIImage *)image opts:(NSDictionary *)opts
+#pragma mark - Existing loading view?
++ (JGALoadingView *)existingLoadingViewInView:(UIView *)view
 {
-    UIImageView *notifView = [[UIImageView alloc] initWithImage:image];
-    notifView.center = _spinView.center;
-    
-    [_spinView removeFromSuperview];
-    [self addSubview:notifView];
-    _activityLabel.text = [opts objectForKey:kOptsKeyMessage];
-    
-    int delay = [[opts objectForKey:kOptsKeyDelay] intValue];
-    [NSTimer scheduledTimerWithTimeInterval:delay 
-                                     target:self 
-                                   selector:@selector(hide:) 
-                                   userInfo:nil repeats:0];
-    
-    if ([opts objectForKey:kCompletionBlock]) {
-        [NSTimer scheduledTimerWithTimeInterval:delay 
-                                         target:self 
-                                       selector:@selector(executeCompletionBlock:) 
-                                       userInfo:opts repeats:0];        
+    UIView *v = [view viewWithTag:DEFAULT_TAG];
+    if (v && [v isKindOfClass:[JGALoadingView class]]) {
+        return (JGALoadingView *)v;
     }
+    return nil;
 }
 
-- (void)executeCompletionBlock:(NSTimer *)timer
-{
-    JGALoadingViewCompletionBlock block = [[timer userInfo] objectForKey:kCompletionBlock];
-    block();
-}
-
-- (void)showSuccessNotification:(NSNotification *)notification
-{
-    UIImage *checkmark = [UIImage imageNamed:@"WhiteCheck"];
-    [self showNotificationImage:checkmark opts:notification.userInfo];
-}
-
-- (void)showFailNotification:(NSNotification *)notification
-{
-    UIImage *failImage = [UIImage imageNamed:@"WhiteX"];
-    [self showNotificationImage:failImage opts:notification.userInfo];
-}
-
--(void)hide:(NSNotification *)notification
-{
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    // Animate in : Scale down and fade in
-    NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInt:1], @"fromValue",
-                              [NSNumber numberWithInt:0], @"toValue",
-                              nil];
-    
-    [self scaleLayerTo:SCALE_OUT_VALUE 
-              duration:SCALE_OUT_DURATION 
-               withKey:animationScaleOutKey 
-              fadeOpts:fadeOpts];
-    
-}
-
-#pragma mark - Creation
+#pragma mark - Creating
 // Create a new view with loading text
 + (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text
 {
@@ -173,21 +130,18 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     return [JGALoadingView loadingViewInView:view withText:text forKey:_defaultKey fontName:fontName];
 }
 
-// Remove loading view if no key provided
-+ (void)hideLoadingView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:_defaultKey object:nil];
-}
-
-+ (JGALoadingView *)existingLoadingViewInView:(UIView *)view
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
 {
-    for (UIView *v in view.subviews){
-        if ([v isKindOfClass:[JGALoadingView class]]) {
-            return (JGALoadingView *)v;
-        }
-    }
-    return nil;
+    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key];
 }
 
++ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key fontName:(NSString *)fontName
+{
+    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key fontName:fontName];
+}
+
+// Check if loading view exists inside view controller class
+// If so, just return the same object - this way we don't end up with multiple views on top of each other
 +(JGALoadingView *)newLoadingViewForView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
 {
     return [JGALoadingView newLoadingViewForView:view withText:text forKey:key fontName:nil];
@@ -205,7 +159,8 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         [loadingView show];
         
         if (fontName) {
-            loadingView.activityLabel.font = [UIFont fontWithName:fontName size:loadingView.activityLabel.font.pointSize];
+            loadingView.activityLabel.font = [UIFont fontWithName:fontName 
+                                                             size:loadingView.activityLabel.font.pointSize];
         }else{
             NSString *defaultCustomFontName = [JGALoadingViewController defaultFontName];
             if (defaultCustomFontName){
@@ -215,72 +170,178 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         }
         
         // Subscribe to remove notification
-        [[NSNotificationCenter defaultCenter] 
-            addObserver:loadingView 
-                selector:@selector(hide:) 
-                    name:key object:nil];
-        
-        [[NSNotificationCenter defaultCenter] 
-             addObserver:loadingView 
-                selector:@selector(showSuccessNotification:) 
-                    name:kNotifSuccess object:nil];
-
-        [[NSNotificationCenter defaultCenter] 
-         addObserver:loadingView 
-         selector:@selector(showFailNotification:) 
-         name:kNotifError object:nil];
+        DLog(@"Subscribing to JGALoadingView Event: %@", key);
+        [[NSNotificationCenter defaultCenter] addObserver:loadingView 
+                                                 selector:@selector(hideNotificationTriggered:) 
+                                                     name:key 
+                                                   object:nil];
     }
-
+    
     return loadingView;
 }
 
-+ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key fontName:(NSString *)fontName
-{
-    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key fontName:fontName];
-}
-
-// Check if loading view exists inside view controller class
-// If so, just return the same object - this way we don't end up with multiple views on top of each other
-+ (JGALoadingView *)loadingViewInView:(UIView *)view withText:(NSString *)text forKey:(NSString *)key
-{
-    return [JGALoadingView newLoadingViewForView:view withText:text forKey:key];
-}
-
+#pragma mark - Hiding
+// Remove loading view if no key provided
 + (void)hideLoadingViewForKey:(NSString *)key
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:key object:nil];
+    [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeNone
+                                        key:key
+                                       text:nil
+                                      delay:0
+                                 completion:nil];
 }
 
-+ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay
++ (void)hideLoadingView{
+    [JGALoadingView hideLoadingViewForKey:_defaultKey];
+}
+
++ (void)hideLoadingViewWithSuccessText:(NSString *)message delay:(int)delay
 {
- 
     [JGALoadingView hideLoadingViewWithSuccess:message delay:delay completion:nil];
 }
 
-+ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay completion:(void(^)(void))completion
++ (void)hideLoadingViewWithSuccessText:(NSString *)message 
+                                 delay:(int)delay
+                            completion:(JGALoadingViewCompletionBlock)completion
 {
-    NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
-    [opts setObject:message forKey:kOptsKeyMessage];
+    [JGALoadingView hideLoadingViewWithSuccessText:message
+                                               key:_defaultKey
+                                             delay:delay
+                                        completion:completion];
+}
++ (void)hideLoadingViewWithSuccessText:(NSString *)message 
+                                   key:(NSString *)key
+                                 delay:(int)delay
+                            completion:(JGALoadingViewCompletionBlock)completion
+{
+    [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeSuccess
+                                        key:key
+                                       text:message
+                                      delay:delay
+                                 completion:completion];
+}
+
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
+                                    key:(NSString *)key
+                                  delay:(int)delay
+{
+    [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeError
+                                        key:key
+                                       text:message
+                                      delay:delay
+                                 completion:nil];
+}
+
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
+                                    key:(NSString *)key
+                                  delay:(int)delay
+                             completion:(JGALoadingViewCompletionBlock)completion
+{
+    [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeError
+                                        key:key
+                                       text:message
+                                      delay:delay
+                                 completion:completion];
+}
+
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
+                                  delay:(int)delay
+{
+    [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeError
+                                        key:_defaultKey
+                                       text:message
+                                      delay:delay
+                                 completion:nil];
+}
+
++ (void)hideLoadingViewWithType:(JGALoadingViewType)type
+                            key:(NSString *)key
+                           text:(NSString *)text
+                          delay:(int)delay
+                     completion:(JGALoadingViewCompletionBlock)completion
+{
+    NSMutableDictionary *opts = [NSMutableDictionary dictionary];
     [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
+    [opts setObject:[NSNumber numberWithInt:type] forKey:kOptsKeyType];
+    if(text)[opts setObject:text forKey:kOptsKeyMessage];
     if (completion) {
         JGALoadingViewCompletionBlock block = (JGALoadingViewCompletionBlock)completion;
         [opts setObject:[block copy] forKey:kCompletionBlock];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSuccess 
+    DLog(@"Posting JGALoadingView Event: %@", key);
+    [[NSNotificationCenter defaultCenter] postNotificationName:key
                                                         object:nil 
-                                                      userInfo:opts];   
+                                                      userInfo:opts];  
 }
 
-+ (void)hideLoadingViewWithError:(NSString *)message delay:(int)delay
+#pragma mark - Notification Handling
+- (void)hideNotificationTriggered:(NSNotification *)notification
 {
-    NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithCapacity:2];
-    [opts setObject:message forKey:kOptsKeyMessage];
-    [opts setObject:[NSNumber numberWithInt:delay] forKey:kOptsKeyDelay];
+    NSDictionary *opts = notification.userInfo;
+    int type = [[opts objectForKey:kOptsKeyType] intValue];
+    if (type == JGALoadingViewTypeSuccess) {
+        [self showSuccessNotification:opts];
+    }else if (type == JGALoadingViewTypeError) {
+        [self showFailNotification:opts];
+    }
+    [self delayNotificationImage:opts];
+}
+
+#pragma mark - Notification Images
+- (void)showSuccessNotification:(NSDictionary *)opts
+{
+    UIImage *checkmark = [UIImage imageNamed:@"WhiteCheck"];
+    [self showNotificationImage:checkmark opts:opts];
+}
+
+- (void)showFailNotification:(NSDictionary *)opts
+{
+    UIImage *failImage = [UIImage imageNamed:@"WhiteX"];
+    [self showNotificationImage:failImage opts:opts];
+}
+- (void)showNotificationImage:(UIImage *)image opts:(NSDictionary *)opts
+{
+    UIImageView *notifView = [[UIImageView alloc] initWithImage:image];
+    notifView.center = _spinView.center;
+    [_spinView removeFromSuperview];
+    [self addSubview:notifView];
+    _activityLabel.text = [opts objectForKey:kOptsKeyMessage];
+}
+- (void)delayNotificationImage:(NSDictionary *)opts
+{
+    int delay = [[opts objectForKey:kOptsKeyDelay] intValue];
+    [NSTimer scheduledTimerWithTimeInterval:delay 
+                                     target:self 
+                                   selector:@selector(hide:) 
+                                   userInfo:opts 
+                                    repeats:0];
+}
+
+#pragma mark - Completion
+-(void)hide:(NSTimer *)timer
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifError
-                                                        object:nil 
-                                                      userInfo:opts];
+    [self executeCompletionBlock:[timer userInfo]];
+    
+    // Animate in : Scale down and fade in
+    NSDictionary *fadeOpts = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithInt:1], @"fromValue",
+                              [NSNumber numberWithInt:0], @"toValue",
+                              nil];
+    
+    [self scaleLayerTo:SCALE_OUT_VALUE 
+              duration:SCALE_OUT_DURATION 
+               withKey:animationScaleOutKey 
+              fadeOpts:fadeOpts];
+    
+}
+
+- (void)executeCompletionBlock:(NSDictionary *)opts
+{
+    JGALoadingViewCompletionBlock block = [opts objectForKey:kCompletionBlock];
+    if (block) block();
 }
 
 #pragma mark - Animation
@@ -337,14 +398,12 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     rotation.fillMode = kCAFillModeForwards;
     rotation.delegate = self;
     [_spinView.layer addAnimation:rotation forKey:@"rotate"];
-
 }
 
 - (void)stopSpinner
 {
     [_spinView.layer removeAllAnimations];
 }
-
 
 #pragma mark - CAAnimation Delegate
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
@@ -367,5 +426,22 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     }
 }
 
+#pragma mark - Deprecated
++ (void)hideLoadingViewWithSuccess:(NSString *)message
+                             delay:(int)delay
+                        completion:(JGALoadingViewCompletionBlock)completion
+{
+    [JGALoadingView hideLoadingViewWithSuccessText:message delay:delay completion:completion];
+}
+
++ (void)hideLoadingViewWithSuccess:(NSString *)message delay:(int)delay
+{
+    [JGALoadingView hideLoadingViewWithSuccessText:message delay:delay];
+}
+
++ (void)hideLoadingViewWithError:(NSString *)message delay:(int)delay
+{
+    [JGALoadingView hideLoadingViewWithErrorMessage:message delay:delay];
+}
 
 @end
