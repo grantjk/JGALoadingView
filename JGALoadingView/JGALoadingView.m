@@ -170,7 +170,6 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         }
         
         // Subscribe to remove notification
-        DLog(@"Subscribing to JGALoadingView Event: %@", key);
         [[NSNotificationCenter defaultCenter] addObserver:loadingView 
                                                  selector:@selector(hideNotificationTriggered:) 
                                                      name:key 
@@ -269,7 +268,6 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         [opts setObject:[block copy] forKey:kCompletionBlock];
     }
     
-    DLog(@"Posting JGALoadingView Event: %@", key);
     [[NSNotificationCenter defaultCenter] postNotificationName:key
                                                         object:nil 
                                                       userInfo:opts];  
