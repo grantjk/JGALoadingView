@@ -71,10 +71,10 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+
         // Create a color view
         self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.8];
-        self.layer.cornerRadius = CORNER_RADIUS;
+        self.layer.cornerRadius = CORNER_RADIUS;    
         
         // Create the label
         self.activityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, LABEL_TOP, LABEL_WIDTH, LABEL_HEIGHT)];
@@ -82,16 +82,16 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         self.activityLabel.textColor = [UIColor whiteColor];
         self.activityLabel.font = [UIFont boldSystemFontOfSize:16];
         self.activityLabel.textAlignment = UITextAlignmentCenter;
-        
+
         // Create the spinner
         self.spinView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmoothSpinner"]];
         _spinView.center = CGPointMake(self.center.x, self.center.y + 10);
         
         // Set autoresizing masks
-        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-        UIViewAutoresizingFlexibleRightMargin |
-        UIViewAutoresizingFlexibleTopMargin |
-        UIViewAutoresizingFlexibleBottomMargin;
+        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | 
+            UIViewAutoresizingFlexibleRightMargin | 
+            UIViewAutoresizingFlexibleTopMargin | 
+            UIViewAutoresizingFlexibleBottomMargin;
         
         // Add the subviews
         [self addSubview: self.activityLabel];
@@ -153,13 +153,13 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     if (!loadingView) {
         CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
         loadingView = [[JGALoadingView alloc] initWithFrame:frame];
-        loadingView.center = CGPointMake(view.frame.size.width * 0.5f, view.frame.size.height * 0.5f);
+        loadingView.center = view.center;
         loadingView.activityLabel.text = text;
         loadingView.parentView = view;
         [loadingView show];
         
         if (fontName) {
-            loadingView.activityLabel.font = [UIFont fontWithName:fontName
+            loadingView.activityLabel.font = [UIFont fontWithName:fontName 
                                                              size:loadingView.activityLabel.font.pointSize];
         }else{
             NSString *defaultCustomFontName = [JGALoadingViewController defaultFontName];
@@ -170,9 +170,9 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         }
         
         // Subscribe to remove notification
-        [[NSNotificationCenter defaultCenter] addObserver:loadingView
-                                                 selector:@selector(hideNotificationTriggered:)
-                                                     name:key
+        [[NSNotificationCenter defaultCenter] addObserver:loadingView 
+                                                 selector:@selector(hideNotificationTriggered:) 
+                                                     name:key 
                                                    object:nil];
     }
     
@@ -199,7 +199,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     [JGALoadingView hideLoadingViewWithSuccess:message delay:delay completion:nil];
 }
 
-+ (void)hideLoadingViewWithSuccessText:(NSString *)message
++ (void)hideLoadingViewWithSuccessText:(NSString *)message 
                                  delay:(int)delay
                             completion:(JGALoadingViewCompletionBlock)completion
 {
@@ -208,7 +208,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                              delay:delay
                                         completion:completion];
 }
-+ (void)hideLoadingViewWithSuccessText:(NSString *)message
++ (void)hideLoadingViewWithSuccessText:(NSString *)message 
                                    key:(NSString *)key
                                  delay:(int)delay
                             completion:(JGALoadingViewCompletionBlock)completion
@@ -220,7 +220,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                  completion:completion];
 }
 
-+ (void)hideLoadingViewWithErrorMessage:(NSString *)message
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
                                     key:(NSString *)key
                                   delay:(int)delay
 {
@@ -231,7 +231,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                  completion:nil];
 }
 
-+ (void)hideLoadingViewWithErrorMessage:(NSString *)message
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
                                     key:(NSString *)key
                                   delay:(int)delay
                              completion:(JGALoadingViewCompletionBlock)completion
@@ -243,7 +243,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                                  completion:completion];
 }
 
-+ (void)hideLoadingViewWithErrorMessage:(NSString *)message
++ (void)hideLoadingViewWithErrorMessage:(NSString *)message 
                                   delay:(int)delay
 {
     [JGALoadingView hideLoadingViewWithType:JGALoadingViewTypeError
@@ -269,8 +269,8 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:key
-                                                        object:nil
-                                                      userInfo:opts];
+                                                        object:nil 
+                                                      userInfo:opts];  
 }
 
 #pragma mark - Notification Handling
@@ -309,10 +309,10 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 - (void)delayNotificationImage:(NSDictionary *)opts
 {
     int delay = [[opts objectForKey:kOptsKeyDelay] intValue];
-    [NSTimer scheduledTimerWithTimeInterval:delay
-                                     target:self
-                                   selector:@selector(hide:)
-                                   userInfo:opts
+    [NSTimer scheduledTimerWithTimeInterval:delay 
+                                     target:self 
+                                   selector:@selector(hide:) 
+                                   userInfo:opts 
                                     repeats:0];
 }
 
@@ -329,9 +329,9 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
                               [NSNumber numberWithInt:0], @"toValue",
                               nil];
     
-    [self scaleLayerTo:SCALE_OUT_VALUE
-              duration:SCALE_OUT_DURATION
-               withKey:animationScaleOutKey
+    [self scaleLayerTo:SCALE_OUT_VALUE 
+              duration:SCALE_OUT_DURATION 
+               withKey:animationScaleOutKey 
               fadeOpts:fadeOpts];
     
 }
@@ -407,6 +407,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
     if (theAnimation == [self.layer animationForKey:animationScaleUpKey] ) {
+        self.center = self.parentView.center;
         [self.parentView addSubview:self];
         [self startSpinner];
         [self scaleNorm];
