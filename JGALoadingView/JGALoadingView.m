@@ -153,7 +153,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
     if (!loadingView) {
         CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
         loadingView = [[JGALoadingView alloc] initWithFrame:frame];
-        loadingView.center = view.center;
+        loadingView.center = CGPointMake(view.frame.size.width * 0.5f, view.frame.size.height * 0.5f);
         loadingView.activityLabel.text = text;
         loadingView.parentView = view;
         [loadingView show];
@@ -407,7 +407,6 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
     if (theAnimation == [self.layer animationForKey:animationScaleUpKey] ) {
-        self.center = self.parentView.center;
         [self.parentView addSubview:self];
         [self startSpinner];
         [self scaleNorm];
