@@ -154,6 +154,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         CGRect frame = CGRectMake(0, 0, COLOR_WIDTH, COLOR_HEIGHT);
         loadingView = [[JGALoadingView alloc] initWithFrame:frame];
         loadingView.center = CGPointMake(view.frame.size.width * 0.5f, view.frame.size.height * 0.5f);
+        loadingView.frame = CGRectIntegral(loadingView.frame);
         loadingView.activityLabel.text = text;
         loadingView.parentView = view;
         [loadingView show];
