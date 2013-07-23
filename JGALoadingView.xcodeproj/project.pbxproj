@@ -15,8 +15,6 @@
 		7B3A3DC9152D21A800178840 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3A3DA7152D21A700178840 /* Foundation.framework */; };
 		7B3A3DD1152D21A800178840 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DCF152D21A800178840 /* InfoPlist.strings */; };
 		7B3A3DD4152D21A800178840 /* JGALoadingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DD3152D21A800178840 /* JGALoadingViewTests.m */; };
-		7B3A3E00152D22EE00178840 /* SmoothSpinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DED152D22EE00178840 /* SmoothSpinner.png */; };
-		7B3A3E01152D22EE00178840 /* SmoothSpinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */; };
 		7B3A3E02152D22EE00178840 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF1152D22EE00178840 /* AppDelegate.m */; };
 		7B3A3E03152D22EE00178840 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF2152D22EE00178840 /* InfoPlist.strings */; };
 		7B3A3E04152D22EE00178840 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF4152D22EE00178840 /* ViewController_iPad.xib */; };
@@ -24,7 +22,14 @@
 		7B3A3E06152D22EE00178840 /* JGALoadingView-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B3A3DF8152D22EE00178840 /* JGALoadingView-Info.plist */; };
 		7B3A3E07152D22EE00178840 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFA152D22EE00178840 /* main.m */; };
 		7B3A3E08152D22EE00178840 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFC152D22EE00178840 /* ViewController.m */; };
-		7B3A3E09152D22EE00178840 /* JGALoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A3DFF152D22EE00178840 /* JGALoadingView.m */; };
+		7B95B8FF179ED6E800C026D5 /* SmoothSpinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8F5179ED6E800C026D5 /* SmoothSpinner.png */; };
+		7B95B900179ED6E800C026D5 /* SmoothSpinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8F6179ED6E800C026D5 /* SmoothSpinner@2x.png */; };
+		7B95B901179ED6E800C026D5 /* WhiteCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8F7179ED6E800C026D5 /* WhiteCheck.png */; };
+		7B95B902179ED6E800C026D5 /* WhiteCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8F8179ED6E800C026D5 /* WhiteCheck@2x.png */; };
+		7B95B903179ED6E800C026D5 /* WhiteX.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8F9179ED6E800C026D5 /* WhiteX.png */; };
+		7B95B904179ED6E800C026D5 /* WhiteX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B8FA179ED6E800C026D5 /* WhiteX@2x.png */; };
+		7B95B905179ED6E800C026D5 /* JGALoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B95B8FC179ED6E800C026D5 /* JGALoadingView.m */; };
+		7B95B906179ED6E800C026D5 /* JGALoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B95B8FE179ED6E800C026D5 /* JGALoadingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +53,6 @@
 		7B3A3DD0152D21A800178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7B3A3DD2152D21A800178840 /* JGALoadingViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGALoadingViewTests.h; sourceTree = "<group>"; };
 		7B3A3DD3152D21A800178840 /* JGALoadingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGALoadingViewTests.m; sourceTree = "<group>"; };
-		7B3A3DED152D22EE00178840 /* SmoothSpinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmoothSpinner.png; sourceTree = "<group>"; };
-		7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SmoothSpinner@2x.png"; sourceTree = "<group>"; };
 		7B3A3DF0152D22EE00178840 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7B3A3DF1152D22EE00178840 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7B3A3DF3152D22EE00178840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -60,8 +63,16 @@
 		7B3A3DFA152D22EE00178840 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7B3A3DFB152D22EE00178840 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7B3A3DFC152D22EE00178840 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		7B3A3DFE152D22EE00178840 /* JGALoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGALoadingView.h; sourceTree = "<group>"; };
-		7B3A3DFF152D22EE00178840 /* JGALoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGALoadingView.m; sourceTree = "<group>"; };
+		7B95B8F5179ED6E800C026D5 /* SmoothSpinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmoothSpinner.png; sourceTree = "<group>"; };
+		7B95B8F6179ED6E800C026D5 /* SmoothSpinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SmoothSpinner@2x.png"; sourceTree = "<group>"; };
+		7B95B8F7179ED6E800C026D5 /* WhiteCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCheck.png; sourceTree = "<group>"; };
+		7B95B8F8179ED6E800C026D5 /* WhiteCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCheck@2x.png"; sourceTree = "<group>"; };
+		7B95B8F9179ED6E800C026D5 /* WhiteX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteX.png; sourceTree = "<group>"; };
+		7B95B8FA179ED6E800C026D5 /* WhiteX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteX@2x.png"; sourceTree = "<group>"; };
+		7B95B8FB179ED6E800C026D5 /* JGALoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGALoadingView.h; sourceTree = "<group>"; };
+		7B95B8FC179ED6E800C026D5 /* JGALoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGALoadingView.m; sourceTree = "<group>"; };
+		7B95B8FD179ED6E800C026D5 /* JGALoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGALoadingViewController.h; sourceTree = "<group>"; };
+		7B95B8FE179ED6E800C026D5 /* JGALoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGALoadingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +102,8 @@
 		7B3A3D96152D21A700178840 = {
 			isa = PBXGroup;
 			children = (
-				7B3A3DEC152D22EE00178840 /* img */,
+				7B95B8F3179ED6E800C026D5 /* JGALoadingView */,
 				7B3A3DEF152D22EE00178840 /* sample */,
-				7B3A3DFD152D22EE00178840 /* src */,
 				7B3A3DCC152D21A800178840 /* JGALoadingViewTests */,
 				7B3A3DA4152D21A700178840 /* Frameworks */,
 				7B3A3DA2152D21A700178840 /* Products */,
@@ -139,15 +149,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7B3A3DEC152D22EE00178840 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				7B3A3DED152D22EE00178840 /* SmoothSpinner.png */,
-				7B3A3DEE152D22EE00178840 /* SmoothSpinner@2x.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
 		7B3A3DEF152D22EE00178840 /* sample */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,13 +166,29 @@
 			path = sample;
 			sourceTree = "<group>";
 		};
-		7B3A3DFD152D22EE00178840 /* src */ = {
+		7B95B8F3179ED6E800C026D5 /* JGALoadingView */ = {
 			isa = PBXGroup;
 			children = (
-				7B3A3DFE152D22EE00178840 /* JGALoadingView.h */,
-				7B3A3DFF152D22EE00178840 /* JGALoadingView.m */,
+				7B95B8F4179ED6E800C026D5 /* img */,
+				7B95B8FB179ED6E800C026D5 /* JGALoadingView.h */,
+				7B95B8FC179ED6E800C026D5 /* JGALoadingView.m */,
+				7B95B8FD179ED6E800C026D5 /* JGALoadingViewController.h */,
+				7B95B8FE179ED6E800C026D5 /* JGALoadingViewController.m */,
 			);
-			path = src;
+			path = JGALoadingView;
+			sourceTree = "<group>";
+		};
+		7B95B8F4179ED6E800C026D5 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				7B95B8F5179ED6E800C026D5 /* SmoothSpinner.png */,
+				7B95B8F6179ED6E800C026D5 /* SmoothSpinner@2x.png */,
+				7B95B8F7179ED6E800C026D5 /* WhiteCheck.png */,
+				7B95B8F8179ED6E800C026D5 /* WhiteCheck@2x.png */,
+				7B95B8F9179ED6E800C026D5 /* WhiteX.png */,
+				7B95B8FA179ED6E800C026D5 /* WhiteX@2x.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,12 +262,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B3A3E00152D22EE00178840 /* SmoothSpinner.png in Resources */,
-				7B3A3E01152D22EE00178840 /* SmoothSpinner@2x.png in Resources */,
 				7B3A3E03152D22EE00178840 /* InfoPlist.strings in Resources */,
 				7B3A3E04152D22EE00178840 /* ViewController_iPad.xib in Resources */,
 				7B3A3E05152D22EE00178840 /* ViewController_iPhone.xib in Resources */,
 				7B3A3E06152D22EE00178840 /* JGALoadingView-Info.plist in Resources */,
+				7B95B8FF179ED6E800C026D5 /* SmoothSpinner.png in Resources */,
+				7B95B900179ED6E800C026D5 /* SmoothSpinner@2x.png in Resources */,
+				7B95B901179ED6E800C026D5 /* WhiteCheck.png in Resources */,
+				7B95B902179ED6E800C026D5 /* WhiteCheck@2x.png in Resources */,
+				7B95B903179ED6E800C026D5 /* WhiteX.png in Resources */,
+				7B95B904179ED6E800C026D5 /* WhiteX@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +309,8 @@
 				7B3A3E02152D22EE00178840 /* AppDelegate.m in Sources */,
 				7B3A3E07152D22EE00178840 /* main.m in Sources */,
 				7B3A3E08152D22EE00178840 /* ViewController.m in Sources */,
-				7B3A3E09152D22EE00178840 /* JGALoadingView.m in Sources */,
+				7B95B905179ED6E800C026D5 /* JGALoadingView.m in Sources */,
+				7B95B906179ED6E800C026D5 /* JGALoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

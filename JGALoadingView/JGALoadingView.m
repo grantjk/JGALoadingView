@@ -81,7 +81,7 @@ static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
         self.activityLabel.backgroundColor = [UIColor clearColor];
         self.activityLabel.textColor = [UIColor whiteColor];
         self.activityLabel.font = [UIFont boldSystemFontOfSize:16];
-        self.activityLabel.textAlignment = UITextAlignmentCenter;
+        self.activityLabel.textAlignment = NSTextAlignmentCenter;
 
         // Create the spinner
         self.spinView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SmoothSpinner"]];
