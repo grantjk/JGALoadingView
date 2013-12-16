@@ -59,8 +59,7 @@ static NSString *animationScaleNormKey = @"scaleNorm";
 static NSString *animationScaleOutKey = @"scaleOut";
 
 static NSString *_defaultKey = @"defaultJGALoadingViewobserverkey";
-
-#define DEFAULT_TAG 874567316874235765
+static NSInteger DEFAULT_TAG = 874567;
 
 + (void)setDefaultFontName:(NSString *)fontName
 {
